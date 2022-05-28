@@ -1,105 +1,183 @@
 $navButtonSize: 2rem;
-*{
-    box-sizing: border-box;
+$barHeight: 6px;
+$bgColor: #fdf6eb;
+$globalPadding: 2.7rem;
+$border: 1px solid #000;
+
+* {
+  box-sizing: border-box;
 }
+
 body {
-    font-family: 'Lemon/Milk', sans-serif;
-    //font-family: 'Lemon/Milk light', sans-serif;
-
-    background-color: #e5e5e5;
-    margin: 0;
-
-    nav {
-        z-index: 2;
-        position: relative;
-        //border: 2px dashed red;
-        display: flex;
-        justify-content: space-between;
-        padding: 2rem 2rem .5rem 2rem;
-        border-bottom: 2px solid #000;
-
-        .logoWrapper {
-            display: flex;
-            align-items: center;
-
-            img {
-                width: 2.5rem;
-                height: 2.5rem;
-                margin: .7rem;
-            }
-
-            h1 {
-                font-size: 1.2rem
-            }
-
-            display:flex;
-
-        }
-
-        .hamburger {
-            display: flex;
-            position: relative;
-            align-items: center;
-            //border: 2px dashed green;
-            
-            label {
-                margin-right: .7rem;
-                right: 0;
-                //border: 2px dashed #000;
-                width: $navButtonSize;
-                height: $navButtonSize;
-                position: absolute;
-                cursor: pointer;
-
-                >div {
-                    $barHeight:4px;
-                    height: $barHeight;
-                    background-color: #000;
-                    position: absolute;
-                    width: 100%;
-                    &:nth-child(2){
-                        //border: 2px dashed green;
-                        top:calc($navButtonSize/ 2 - $barHeight / 2);
-                    }
-                    &:nth-child(3){
-                        bottom:0;
-                        display: flex;
-                        background-color: transparent;
-                        justify-content: space-between;
-                        div:nth-child(1){
-                            background-color: #000;
-                            width: 60%;
-                        }
-                        div:nth-child(2){
-                            width:20%;
-                            background-color:orange;
-                        }
-                    }
-                }
-            }
-
-            input {
-                display: none;
-            }
-
-            ol {
-                z-index: -1;
-                position: absolute;
-                top: -100vh;
-                transition: .5s;
-                display: flex;
-                flex-direction: column;
-                right: -2rem;
-                padding: 20px 10px;
-                list-style: none;
-                width: 100vw;
-            }
-            #toggler:checked ~{
-                ol{
-                    top:100%;
-
-                }
-            }
-        }
+  font-family: "Lemon/Milk", sans-serif;
+  // font-family: 'Lemon/Milk light', sans-serif;
+  background-color: $bgColor;
+  margin: 0;
+  nav {
+    display: flex;
+    justify-content: space-between;
+    background-color: $bgColor;
+    padding: 2rem 2rem 0.5rem 2rem;
+    border-bottom: $border;
+    position: relative;
+    .logoWrapper {
+      display: flex;
+      align-items: center;
+      z-index: 2;
+      img {
+        width: $navButtonSize;
+        height: $navButtonSize;
+        margin: 0.7rem;
+      }
+      h1 {
+        font-size: 1.2rem;
+      }
+      &:before {
+        content: "";
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        border-bottom: $border;
+        z-index: -1;
+        box-sizing: border-box;
+        background-color: $bgColor;
+      }
     }
+    .burgerWrapper {
+      display: flex;
+      position: relative;
+      align-items: center;
+
+      label {
+        z-index: 2;
+        margin-right: 0.7rem;
+        right: 0;
+        width: $navButtonSize;
+        height: $navButtonSize;
+        position: absolute;
+        cursor: pointer;
+        // label > div - bezpośrednie dzieci divy od labela
+        // ( nie obejmuje wnuków labela )
+        // border:3px solid red;
+        > div {
+          height: $barHeight;
+          background-color: #000;
+          position: absolute;
+          width: 100%;
+          // & - odnosi się do tego selektora
+          // wewnątrz którego się znajduje
+          &:nth-child(2) {
+            // przesuń diva na środek labela
+            margin-top: calc($navButtonSize/2);
+            // przesuń środek diva na środek labela
+            top: calc(-#{$barHeight} / 2);
+            // top: calc( $barHeight / 2 - $barHeight);
+            // oneliner:
+            // top: calc($navButtonSize / 2 - $barHeight / 2);
+          }
+          &:nth-child(3) {
+            bottom: 0;
+            display: flex;
+            background-color: transparent;
+            justify-content: space-between;
+            div:nth-child(1) {
+              background-color: #000;
+              width: 60%;
+            }
+            div:nth-child(2) {
+              width: 20%;
+              background-color: #ff5202;
+            }
+          }
+        }
+      }
+      input {
+        display: none;
+      }
+      ol {
+        box-shadow: 15px 15px 10px silver;
+        margin: 0;
+        z-index: 1;
+        background-color: $bgColor;
+        position: absolute;
+        top: -100vh;
+        transition: 1s;
+        display: flex;
+        flex-direction: column;
+        right: -2rem;
+        padding: 20px 10px;
+        list-style: none;
+        width: 100vw;
+      }
+
+      #toggler:checked ~ {
+        ol {
+          top: 100%;
+        }
+        label > div {
+          top: calc($navButtonSize / 2 - $barHeight / 2);
+          transition: 0.7s;
+          &:nth-child(1) {
+            transform: rotate(45deg);
+          }
+          &:nth-child(2) {
+            opacity: 0;
+          }
+          &:nth-child(3) {
+            transform: rotate(-45deg);
+            div:nth-child(1) {
+              display: none;
+            }
+            div:nth-child(2) {
+              background-color: antiquewhite;
+            }
+            background-color: #000;
+            justify-content: center;
+          }
+        }
+      }
+    }
+  }
+  main {
+    position: relative;
+    z-index: -2;
+    .titleWrapper {
+      border-left: $border;
+      margin-left: $globalPadding;
+      padding: 1rem 2rem 3rem 0.7rem;
+      h2 {
+        font-size: 2rem;
+        margin: 0.5rem 0;
+      }
+      p {
+        font-family: "Lemon/Milk light", sans-serif;
+        margin: 2rem 0;
+      }
+      button {
+        display: none;
+      }
+      b {
+        font-size: 2rem;
+      }
+    }
+    .imgContainer {
+      border-top: $border;
+      border-bottom: $border;
+      .imgWrapper {
+          background-color: #ff5202;
+          margin: 0 $globalPadding;
+          border-left: $border;
+          border-right: $border;
+        .img {
+          min-height: 80vh;
+          background-image: url("../img/man-is-putting-watch-his-wrist\ 1.webp");
+          background-size: cover;
+          background-position: center;
+          border-radius: 50vw;
+        }
+      }
+    }
+  }
 }
