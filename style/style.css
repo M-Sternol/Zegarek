@@ -8,6 +8,7 @@ a {
 }
 
 button {
+  cursor: pointer;
   padding: 0.9rem 2.5rem;
   border-radius: 0;
   border: 1px solid #000;
@@ -21,15 +22,15 @@ button:after {
   background-color: white;
   width: 100%;
   height: 100%;
-  top: 2.5rem;
+  top: 0.5rem;
   left: 0.5rem;
-  z-index: 0;
+  z-index: -1;
 }
 button:active {
   top: 1rem;
   left: 1rem;
 }
-button:after {
+button:active:after {
   top: 0;
   left: 0;
 }
@@ -287,7 +288,13 @@ nav .buttons {
   main {
     display: grid;
     grid-template-columns: 2fr 1fr;
-    margin: 0 3rem;
+    margin: 0 6rem;
+    margin-bottom: 4rem;
+  }
+  main .titleWrapper {
+    margin: 0 !important;
+    padding: 3rem 2rem 4rem 3rem;
+    border-bottom: 1px solid #000;
   }
   main .titleWrapper p {
     max-width: 70%;
@@ -301,5 +308,49 @@ nav .buttons {
   }
   main .titleWrapper button {
     display: flex !important;
+    margin: 2rem 0;
+  }
+  main .imgContainer {
+    border: none !important;
+  }
+  main .imgContainer .imgWrapper {
+    height: 100%;
+    margin: 0 !important;
+  }
+  main .imgContainer .imgWrapper .img {
+    min-height: 100% !important;
+  }
+  main .contentContainer {
+    margin: 0 !important;
+    padding: 0 !important;
+    border-bottom: 1px solid #000;
+    display: flex;
+    border-right: none !important;
+  }
+  main .contentContainer .buttonContainer {
+    display: none;
+  }
+  main .contentContainer .imgWrapper {
+    flex: 1;
+  }
+  main .contentContainer .imgWrapper .img {
+    min-height: 100% !important;
+  }
+  main .contentContainer .contentWrapper {
+    font-family: "Lemon/Milk light", sans-serif;
+    font-size: 1.5rem;
+    flex: 3;
+    padding: 2rem 3rem;
+  }
+  main .contentContainer .contentWrapper p {
+    text-align: left !important;
+  }
+  main .trendingWrapper {
+    border-top: none !important;
+  }
+  main .trendingWrapper .trending {
+    margin: 0 !important;
+    min-height: 100%;
+    align-items: center;
   }
 }/*# sourceMappingURL=style.css.map */

@@ -14,6 +14,7 @@ a {
     text-decoration: none;
   }
   button {
+    cursor:pointer;
     padding: 0.9rem 2.5rem;
     border-radius: 0;
     border: $border;
@@ -27,18 +28,19 @@ a {
       background-color: white;
       width: 100%;
       height: 100%;
-      top: 2.5rem;
-      left: 0.5rem;
-      z-index: 0;
+      top: .5rem;
+      left: .5rem;
+      z-index: -1;
     }
     &:active {
       top: 1rem;
       left: 1rem;
-    }
-    &:after {
+      &:after {
       top: 0;
       left: 0;
     }
+    }
+    
   }
 
 body {
@@ -317,8 +319,12 @@ body {
   main{
       display: grid;
       grid-template-columns: 2fr 1fr ;
-      margin: 0 3rem;
+      margin: 0 6rem;
+      margin-bottom:4rem;
       .titleWrapper{
+          margin: 0 !important;
+          padding: 3rem 2rem 4rem 3rem;
+          border-bottom: $border;
           p{max-width: 70%;}
           h2{font-size: 3rem !important;}
           img{
@@ -327,7 +333,55 @@ body {
           }
           button{
               display: flex !important;
+              margin:2rem 0;
           }
       }
+      .imgContainer{
+          border:none !important;
+           .imgWrapper{
+          height:100%;
+          margin: 0 !important;
+          .img{
+          min-height:100% !important;
+      }
+      }
+      }
+      .contentContainer{
+          margin: 0 !important;
+          padding: 0 !important;
+          border-bottom: $border;
+          display: flex ;
+          border-right: none !important;
+          .buttonContainer{
+              display: none;
+          }
+          .imgWrapper{
+              flex:1;
+              .img{
+                  min-height: 100% !important;
+              }
+          }
+          .contentWrapper{
+              font-family: $lightFont;
+              font-size: 1.5rem;
+              flex:3;
+              padding: 2rem 3rem;
+              p{
+                text-align: left !important;
+              }
+          }
+      }
+      .trendingWrapper{
+          border-top:none !important;
+          .trending{
+              margin: 0 !important;
+              min-height: 100%;
+              align-items: center;
+
+          }
+      }
+     
+      
   }
+  
 }
